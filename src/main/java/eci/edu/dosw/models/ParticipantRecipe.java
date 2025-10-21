@@ -9,13 +9,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "recipes")
 public class ParticipantRecipe extends Recipe{
     private String season;
-    public ParticipantRecipe(String recipeTitle, String chefName, ChefType chefType, List<String> ingredients, List<String> instructions, String season) {
-        super(recipeTitle, chefName, chefType, ingredients, instructions);
+    public ParticipantRecipe(String id, String recipeTitle, String chefName, ChefType chefType, List<String> ingredients, List<String> instructions, String season) {
+        super(id, recipeTitle, chefName, chefType, ingredients, instructions);
         this.season = season;
     }
 }

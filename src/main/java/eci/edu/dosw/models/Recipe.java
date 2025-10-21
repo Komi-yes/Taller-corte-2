@@ -10,7 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "recipes")
 public abstract class Recipe {
@@ -21,7 +20,8 @@ public abstract class Recipe {
     protected ChefType chefType;
     protected List<String> ingredients;
     protected List<String> instructions;
-    public Recipe(String recipeTitle, String chefName, ChefType chefType, List<String> ingredients, List<String> instructions) {
+    public Recipe(String id, String recipeTitle, String chefName, ChefType chefType, List<String> ingredients, List<String> instructions) {
+        this.id = id;
         this.recipeTitle = recipeTitle;
         this.chefName = chefName;
         this.chefType = chefType;

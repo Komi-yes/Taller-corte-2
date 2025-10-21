@@ -129,8 +129,12 @@ public class RecipeService {
         }
 
         Recipe recipe;
+
+        Integer idInt = recipeRepository.findAll().size()+1;
+        String id = idInt.toString();
         if(recipeCreationRequest.chefType() == ChefType.PARTICIPANT){
             recipe = new ParticipantRecipe(
+                    id.toString(),
                     recipeCreationRequest.recipeTitle(),
                     recipeCreationRequest.chefName(),
                     recipeCreationRequest.chefType(),
@@ -141,6 +145,7 @@ public class RecipeService {
         }
         else if(recipeCreationRequest.chefType() == ChefType.JURY){
             recipe = new JuryRecipe(
+                    id.toString(),
                     recipeCreationRequest.recipeTitle(),
                     recipeCreationRequest.chefName(),
                     recipeCreationRequest.chefType(),
@@ -150,6 +155,7 @@ public class RecipeService {
         }
         else {
             recipe = new ViewerRecipe(
+                    id.toString(),
                     recipeCreationRequest.recipeTitle(),
                     recipeCreationRequest.chefName(),
                     recipeCreationRequest.chefType(),

@@ -9,11 +9,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "recipes")
 public class JuryRecipe extends Recipe{
-    public JuryRecipe(String recipeTitle, String chefName, ChefType chefType, List<String> ingredients, List<String> instructions) {
-        super(recipeTitle, chefName, chefType, ingredients, instructions);
+    public JuryRecipe(String id, String recipeTitle, String chefName, ChefType chefType, List<String> ingredients, List<String> instructions) {
+        super(id, recipeTitle, chefName, chefType, ingredients, instructions);
     }
 }
