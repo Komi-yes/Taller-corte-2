@@ -1,31 +1,35 @@
 package eci.edu.dosw.models;
 
 import eci.edu.dosw.models.enums.ChefType;
-import lombok.AllArgsConstructor;
+import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @Document(collection = "recipes")
 public abstract class Recipe {
-    @Id
-    protected String id;
-    protected String recipeTitle;
-    protected String chefName;
-    protected ChefType chefType;
-    protected List<String> ingredients;
-    protected List<String> instructions;
-    public Recipe(String id, String recipeTitle, String chefName, ChefType chefType, List<String> ingredients, List<String> instructions) {
-        this.id = id;
-        this.recipeTitle = recipeTitle;
-        this.chefName = chefName;
-        this.chefType = chefType;
-        this.ingredients = ingredients;
-        this.instructions = instructions;
-    }
+  @Id protected String id;
+  protected String recipeTitle;
+  protected String chefName;
+  protected ChefType chefType;
+  protected List<String> ingredients;
+  protected List<String> instructions;
+
+  public Recipe(
+      String id,
+      String recipeTitle,
+      String chefName,
+      ChefType chefType,
+      List<String> ingredients,
+      List<String> instructions) {
+    this.id = id;
+    this.recipeTitle = recipeTitle;
+    this.chefName = chefName;
+    this.chefType = chefType;
+    this.ingredients = ingredients;
+    this.instructions = instructions;
+  }
 }
