@@ -34,15 +34,10 @@
     </properties>
 
     <dependencies>
-
         <!-- Spring Boot Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
         <!-- Spring Boot MongoDB -->
@@ -99,7 +94,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- ByteBuddy explícito para soporte de Java 24 -->
+        <!-- ByteBuddy explÃ­cito para soporte de Java 24 -->
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
