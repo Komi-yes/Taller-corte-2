@@ -78,6 +78,6 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'TallerCorte2'
+          app-name: 'MasterChefPalaciosAPI'
           package: 'target/app.jar'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_16F2E10380F943BAA9F795345910734A }}
