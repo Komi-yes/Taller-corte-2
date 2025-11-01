@@ -102,26 +102,28 @@ public class RecipeService {
 
   public Recipe createRecipe(RecipeDTO recipeCreationRequest) {
     // Validate recipe title
-    if (recipeCreationRequest.recipeTitle() == null || recipeCreationRequest.recipeTitle().trim().isEmpty()) {
+    if (recipeCreationRequest.recipeTitle() == null
+        || recipeCreationRequest.recipeTitle().trim().isEmpty()) {
       logger.error("Recipe title cannot be null or empty");
       throw new BussinessException("Recipe title cannot be null or empty");
     }
-    
+
     // Validate ingredients (null check only, allow empty list)
     if (recipeCreationRequest.ingredients() == null) {
       logger.error("Ingredients cannot be null");
       throw new BussinessException("Ingredients cannot be null");
     }
-    
+
     // Validate instructions (null check only, allow empty list)
     if (recipeCreationRequest.instructions() == null) {
       logger.error("Instructions cannot be null");
       throw new BussinessException("Instructions cannot be null");
     }
-    
+
     // Validate participant recipes have a non-empty season
     if (recipeCreationRequest.chefType() == ChefType.PARTICIPANT) {
-      if (recipeCreationRequest.season() == null || recipeCreationRequest.season().trim().isEmpty()) {
+      if (recipeCreationRequest.season() == null
+          || recipeCreationRequest.season().trim().isEmpty()) {
         logger.error("Participant recipes must have a non-empty season");
         throw new BussinessException("Participant recipes must have a non-empty season");
       }
