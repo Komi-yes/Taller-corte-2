@@ -25,10 +25,19 @@ public class RecipeService {
     return recipeRepository.findAll();
   }
 
+  public Recipe getRecipeByTitle(String title) {
+    Recipe recipe = recipeRepository.findByRecipeTitle(title).orElse(null);
+    if (recipe == null) {
+      logger.error("Recipe not found by tile: {}", title);
+      throw new BussinessException("Recipe not found");
+    }
+    return recipe;
+  }
+
   public Recipe getRecipeById(String Id) {
     Recipe recipe = recipeRepository.findByRecipeById(Id).orElse(null);
     if (recipe == null) {
-      logger.error("Recipe not found");
+      logger.error("Recipe not found by id: {}", Id);
       throw new BussinessException("Recipe not found");
     }
     return recipe;
@@ -62,11 +71,7 @@ public class RecipeService {
   }
 
   public Recipe updateRecipe(String recipeTitle, UpdateRecipeDTO recipeUpdateRequest) {
-    Recipe recipe = recipeRepository.findByRecipeTitle(recipeTitle).orElse(null);
-    if (recipe == null) {
-      logger.error("Recipe not found");
-      throw new BussinessException("Recipe not found");
-    }
+    Recipe recipe = getRecipeByTitle(recipeTitle);
 
     if (recipeUpdateRequest.recipeTitle() != null)
       recipe.setRecipeTitle(recipeUpdateRequest.recipeTitle());
@@ -86,11 +91,7 @@ public class RecipeService {
   }
 
   public Recipe deleteRecipe(String recipeTitle) {
-    Recipe recipe = recipeRepository.findByRecipeTitle(recipeTitle).orElse(null);
-    if (recipe == null) {
-      logger.error("Recipe not found");
-      throw new BussinessException("Recipe not found");
-    }
+    Recipe recipe = getRecipeByTitle(recipeTitle);
     try {
       recipeRepository.delete(recipe);
       return recipe;
@@ -139,8 +140,8 @@ public class RecipeService {
 
     Recipe recipe;
 
-    Integer idInt = recipeRepository.findAll().size() + 1;
-    String id = idInt.toString();
+    int idInt = recipeRepository.findAll().size() + 1;
+    String id = Integer.toString(idInt);
     if (recipeCreationRequest.chefType() == ChefType.PARTICIPANT) {
       recipe =
           new ParticipantRecipe(
@@ -176,7 +177,8 @@ public class RecipeService {
     try {
       return recipeRepository.save(recipe);
     } catch (Exception e) {
-      logger.error("An inesperated error has occurred when creating the recipe: " + e.getMessage());
+      logger.error(
+          "An inesperated error has occurred when creating the recipe: {}", e.getMessage());
       throw new BussinessException(
           "An inesperated error has occurred when creating the recipe: " + e.getMessage());
     }
