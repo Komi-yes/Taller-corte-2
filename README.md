@@ -226,3 +226,7 @@ El informe estará disponible en `target/site/jacoco/index.html`
 3. Configura las variables de entorno en el Portal de Azure:
    - `SPRING_DATA_MONGODB_URI`: Tu cadena de conexión de MongoDB
    - `SPRING_PROFILES_ACTIVE`: prod
+
+### Link Azure
+
+https://masterchefpalaciosapi-evdhgjchhceweyaq.canadacentral-01.azurewebsites.net/api/swagger-ui/index.html
